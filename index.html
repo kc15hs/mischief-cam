@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mischief Cam</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- MediaPipe via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+</head>
+<body>
+  <header class="appbar">
+    <h1>Mischief Cam</h1>
+  </header>
+
+  <main class="container">
+    <section class="stage">
+      <video id="videoIn" playsinline muted></video>
+      <canvas id="canvasOut"></canvas>
+    </section>
+
+    <section class="controls">
+      <div class="row">
+        <label>プリセット</label>
+        <select id="presetSelect"></select>
+        <button id="randBtn">ランダム</button>
+        <button id="captureBtn">撮影</button>
+      </div>
+      <div class="row">
+        <button id="flipBtn">前後カメラ切替</button>
+        <label class="switch">
+          <input type="checkbox" id="mirrorChk" checked>
+          <span>ミラー表示</span>
+        </label>
+        <button id="reloadParamsBtn">params.json再読込</button>
+        <label class="file">
+          <input type="file" id="paramsFile" accept="application/json">
+          外部params.json読込
+        </label>
+      </div>
+
+      <details class="advanced">
+        <summary>テキストで上書き（キー=値; 形式 / JSON）</summary>
+        <textarea id="paramText" placeholder="brow_thickness=0.9; lip_color=#ff0000; ..."></textarea>
+        <div>
+          <button id="applyTextBtn">適用</button>
+          <button id="exportParamsBtn">現在をJSON保存</button>
+        </div>
+      </details>
+
+      <p class="hint">
+        iPhoneはSafariでご利用ください（カメラ許可が必要）。撮影後の画像は長押しで保存できます。
+      </p>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
